@@ -1,15 +1,20 @@
-from flask import Flask
+from flask import Flask, render_template
 import requests
+import json
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
     API_KEY = "DEMO_KEY"
-    date = "2017-08-18"
-    url = f"https://api.nasa.gov/planetary/apod?date={date}&api_key={API_KEY}"
+    #date = "2017-08-18"
+    #url = f"https://api.nasa.gov/planetary/apod?date={date}&api_key={API_KEY}"
+    url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
+
     r = requests.get(url).content
-    return r
+    y = json.loads(r)
+
+    return render_template("base.jinja", image=y["url"])
 
 if __name__ == "__main__":
     app.run(debug=True)
