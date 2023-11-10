@@ -1,2 +1,6 @@
 # TPI-Project
-visualizzatore dei meteoriti caduti di [data.nasa.gov](https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh)
+visualizzatore della foto del giorno con filtri
+
+## Link utili
+https://api.nasa.gov/planetary/apod
+https://api.nasa.gov/
