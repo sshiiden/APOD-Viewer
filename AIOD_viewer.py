@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    API_KEY = "DEMO_KEY"
+    API_KEY = "CtpP4rkxqLb297YpfL9T9m1X6UPNgqzpA6BiaW2y"
     #date = "2017-08-18"
     #url = f"https://api.nasa.gov/planetary/apod?date={date}&api_key={API_KEY}"
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
