@@ -1,15 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 import json
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods = ["POST", "GET"])
 def index():
     API_KEY = "CtpP4rkxqLb297YpfL9T9m1X6UPNgqzpA6BiaW2y"
-    #date = "2017-08-18"
-    #url = f"https://api.nasa.gov/planetary/apod?date={date}&api_key={API_KEY}"
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
+
+    date = ""
+    if request.method == "POST":
+        date = request.form["date"]
+    if date:
+        url += f"&date={date}"
 
     r = requests.get(url).content
     y = json.loads(r)
