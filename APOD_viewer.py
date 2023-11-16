@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 import json
+import datetime
 
 app = Flask(__name__)
 
@@ -9,16 +10,16 @@ def index():
     API_KEY = "CtpP4rkxqLb297YpfL9T9m1X6UPNgqzpA6BiaW2y"
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
 
-    date = ""
+    today = datetime.datetime.now().date()
+    date = today
     if request.method == "POST":
         date = request.form["date"]
-    if date:
         url += f"&date={date}"
 
-    r = requests.get(url).content
-    y = json.loads(r)
+    content = requests.get(url).content
+    data = json.loads(content)
 
-    return render_template("base.jinja", image=y["url"])
+    return render_template("base.jinja", image=data["url"], date=date, today=today)
 
 if __name__ == "__main__":
     app.run(debug=True)
