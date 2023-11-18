@@ -8,15 +8,15 @@
     <title>APOD Viewer</title>
 </head>
 <body>
-    <h1>APOD Viewer {{ date }}</h1>
+    <h1>APOD Viewer {{ data.date }}</h1>
     <form action="/" method="post">
         <p>
-        <input type = "date" name = "date" value="{{ date }}" min="1995-06-16" max="{{ today }}" />
+        <input type = "date" name = "date" value="{{ data.date }}" min="1995-06-16" max="{{ today }}" />
         <input type = "submit" value = "submit" />
         </p>
     </form>
-    <h2>{{ title }}</h2>
-    <img src="{{ image }}" alt="Image of the day">
-    <p>{{ explanation }}</p>
+    <h2>{{ data.title }}</h2>
+    <img src="{{ data.url }}" alt="Image of the day">
+    <p>{{ data.explanation }}</p>
 </body>
 </html>

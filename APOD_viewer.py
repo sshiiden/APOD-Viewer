@@ -19,7 +19,7 @@ def index():
     content = requests.get(url).content
     data = json.loads(content)
 
-    return render_template("base.jinja", image=data["url"], date=date, today=today, title=data["title"], explanation=data["explanation"])
+    return render_template("base.jinja", data=data, today=today)
 
 if __name__ == "__main__":
     app.run(debug=True)
