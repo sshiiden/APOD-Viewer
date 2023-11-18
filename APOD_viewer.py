@@ -14,10 +14,10 @@ def index():
     date = today
     if request.method == "POST":
         date = request.form["date"]
-        url += f"&date={date}"
+        url += f"&start_date={date}"
 
     content = requests.get(url).content
-    data = json.loads(content)
+    data = json.loads(content)[0]
 
     return render_template("base.jinja", data=data, today=today)
 
