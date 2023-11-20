@@ -1,34 +1,64 @@
 {# template/base.jinja #}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>APOD Viewer</title>
-</head>
-<body>
-    <h1>APOD Viewer</h1>
     <script>
-        $(document).ready(function() {
-            $("#start_date").on("input", function() {
-                $("#end_date").attr("min", $(this).val())
+        function changeFilter() {
+            switch ($("#filter_type").val()) {
+                case "single":
+                    $("#start_date").show();
+                    $("#end_date").hide();
+                    $("#n_images").hide();
+                    break;
+                case "range":
+                    $("#start_date").show();
+                    $("#end_date").show();
+                    $("#n_images").hide();
+                    break;
+                case "random":
+                    $("#start_date").hide();
+                    $("#end_date").hide();
+                    $("#n_images").show();
+                    break;
+            }
+        }
+        $(document).ready(function () {
+            changeFilter();
+            $("#start_date").on("input", function () {
+                $("#end_date").attr("min", $(this).val());
+            });
+            $("#filter_type").on("input", function () {
+                changeFilter();
             });
         });
     </script>
+    <title>APOD Viewer</title>
+</head>
+
+<body>
+    <h1>APOD Viewer</h1>
     <form action="/" method="post">
-        <p>
-        <input type = "date" id="start_date" name="start_date" value="{{ start_date }}" min="1995-06-16" max="{{ today }}" />
-        <input type = "date" id="end_date" name = "end_date" value="{{ end_date }}" min="{{ start_date }}" max="{{ today }}" />
-        <input type = "submit" value = "submit" />
-        </p>
+        <select name="filter_type" id="filter_type">
+            <option value="single">Date</option>
+            <option value="range">Date range</option>
+            <option value="random">Random images</option>
+        </select>
+        <input type="date" id="start_date" name="start_date" value="{{ start_date }}" min="1995-06-16" max="{{ today }}" />
+        <input type="date" id="end_date" name="end_date" value="{{ end_date }}" min="{{ start_date }}" max="{{ today }}" />
+        <input type="number" id="n_images" name="n_images" value="1" min="1" max="100" />
+        <input type="submit" value="submit" />
     </form>
     {% for image in images %}
-        <h2>{{ image.title }} {{ image.date }}</h2>
-        <img src="{{ image.url }}" alt="Image of the day">
-        <p>{{ image.explanation }}</p>
-        <hr>
+    <h2>{{ image.title }} {{ image.date }}</h2>
+    <img src="{{ image.url }}" alt="Image of the day">
+    <p>{{ image.explanation }}</p>
+    <hr>
     {% endfor %}
 </body>
+
 </html>
