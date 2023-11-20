@@ -11,17 +11,16 @@
 <body>
     <h1>APOD Viewer</h1>
     <script>
-        $(document).ready(function () {
-            $("#start_date").on("input", function () {
-                let val = $(this).val();
-                console.log(val);
+        $(document).ready(function() {
+            $("#start_date").on("input", function() {
+                $("#end_date").attr("min", $(this).val())
             });
         });
     </script>
     <form action="/" method="post">
         <p>
         <input type = "date" id="start_date" name="start_date" value="{{ start_date }}" min="1995-06-16" max="{{ today }}" />
-        <input type = "date" name = "end_date" value="{{ end_date }}" min="{{ start_date }}" max="{{ today }}" />
+        <input type = "date" id="end_date" name = "end_date" value="{{ end_date }}" min="{{ start_date }}" max="{{ today }}" />
         <input type = "submit" value = "submit" />
         </p>
     </form>
