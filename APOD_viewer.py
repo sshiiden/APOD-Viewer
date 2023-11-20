@@ -11,15 +11,21 @@ def index():
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
 
     today = datetime.datetime.now().date()
-    date = today
+    start_date = today
+    end_date = None
+
     if request.method == "POST":
-        date = request.form["date"]
-        url += f"&start_date={date}"
+        start_date = request.form["start_date"]
+        end_date = request.form["end_date"]
+
+    url += f"&start_date={start_date}"
+    if end_date:
+        url += f"&end_date={end_date}"
 
     content = requests.get(url).content
-    data = json.loads(content)[0]
+    images = json.loads(content)
 
-    return render_template("base.jinja", data=data, today=today)
+    return render_template("base.jinja", images=images, today=today, start_date=start_date, end_date=end_date)
 
 if __name__ == "__main__":
     app.run(debug=True)
