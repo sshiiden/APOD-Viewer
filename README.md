@@ -1,6 +1,2 @@
-# TPI-Project
+# [APOD](https://apod.nasa.gov/) Viewer
 visualizzatore della foto del giorno con filtri
-
-## Link utili
-https://api.nasa.gov/planetary/apod
-https://api.nasa.gov/
