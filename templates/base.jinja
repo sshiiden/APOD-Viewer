@@ -47,9 +47,9 @@
     <h1>APOD Viewer</h1>
     <form action="/" method="post">
         <select name="filter_type" id="filter_type">
-            <option value="single" {% if data.filter_type == "single" %} selected {% endif %}>Date</option>
-            <option value="range" {% if data.filter_type == "range" %} selected {% endif %}>Date range</option>
-            <option value="random" {% if data.filter_type == "random" %} selected {% endif %}>Random images</option>
+            <option value="single" {% if data.filter_type=="single" %} selected {% endif %}>Date</option>
+            <option value="range" {% if data.filter_type=="range" %} selected {% endif %}>Date range</option>
+            <option value="random" {% if data.filter_type=="random" %} selected {% endif %}>Random images</option>
         </select>
         <input type="date" id="start_date" name="start_date" value="{{ data.start_date }}" min="1995-06-16" max="{{ data.today }}" />
         <input type="date" id="end_date" name="end_date" value="{{ data.end_date }}" min="{{ data.start_date }}" max="{{ data.today }}" />
@@ -58,7 +58,11 @@
     </form>
     {% for image in images %}
     <h2>{{ image.title }} {{ image.date }}</h2>
+    {% if image.media_type == "video" %}
+    <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
+    {% else %}
     <img src="{{ image.url }}" alt="Image of the day">
+    {% endif %}
     <p>{{ image.explanation }}</p>
     <hr>
     {% endfor %}
