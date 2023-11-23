@@ -31,9 +31,7 @@
             changeFilter();
             $("#start_date").on("input", function () {
                 $("#end_date").attr("min", $(this).val());
-
                 if ($("#end_date").val() < $("#start_date").val()) {
-                    console.log($("#end_date").val())
                     $("#end_date").val($("#start_date").val());
                 }
             });
@@ -49,13 +47,13 @@
     <h1>APOD Viewer</h1>
     <form action="/" method="post">
         <select name="filter_type" id="filter_type">
-            <option value="single">Date</option>
-            <option value="range">Date range</option>
-            <option value="random">Random images</option>
+            <option value="single" {% if data.filter_type == "single" %} selected {% endif %}>Date</option>
+            <option value="range" {% if data.filter_type == "range" %} selected {% endif %}>Date range</option>
+            <option value="random" {% if data.filter_type == "random" %} selected {% endif %}>Random images</option>
         </select>
-        <input type="date" id="start_date" name="start_date" value="{{ start_date }}" min="1995-06-16" max="{{ today }}" />
-        <input type="date" id="end_date" name="end_date" value="{{ end_date }}" min="{{ start_date }}" max="{{ today }}" />
-        <input type="number" id="n_images" name="n_images" value="1" min="1" max="100" />
+        <input type="date" id="start_date" name="start_date" value="{{ data.start_date }}" min="1995-06-16" max="{{ data.today }}" />
+        <input type="date" id="end_date" name="end_date" value="{{ data.end_date }}" min="{{ data.start_date }}" max="{{ data.today }}" />
+        <input type="number" id="n_images" name="n_images" value="{{ data.n_images }}" min="1" max="100" />
         <input type="submit" value="submit" />
     </form>
     {% for image in images %}
