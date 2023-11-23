@@ -31,6 +31,11 @@
             changeFilter();
             $("#start_date").on("input", function () {
                 $("#end_date").attr("min", $(this).val());
+
+                if ($("#end_date").val() < $("#start_date").val()) {
+                    console.log($("#end_date").val())
+                    $("#end_date").val($("#start_date").val());
+                }
             });
             $("#filter_type").on("input", function () {
                 changeFilter();
