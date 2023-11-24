@@ -34,13 +34,13 @@ def index():
     elif request.method == "GET":
         url += f"&start_date={today}"
 
-    #content = requests.get(url).content
-    #images = json.loads(content)
+    content = requests.get(url).content
+    images = json.loads(content)
 
     #per evitare richieste
-    f = open("apod.json")
-    images = json.loads(f.read())
-    f.close()
+    #f = open("apod.json")
+    #images = json.loads(f.read())
+    #f.close()
 
     return render_template("base.jinja", images=images, data=data)
 
