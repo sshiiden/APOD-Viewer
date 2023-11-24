@@ -4,13 +4,13 @@
     <div class="grid-item">
         <h3>{{ image.date }}</h3>
         <h2>{{ image.title }}</h2>
-        <a href="/">
         {% if image.media_type == "video" %}
         <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
         {% else %}
-        <img src="{{ image.url }}" alt="Image of the day">
-        {% endif %}
+        <a href="{{ image.hdurl}}">
+            <img id="img-grid" src="{{ image.url }}" alt="Image of the day">
         </a>
+        {% endif %}
         <p>{{ image.explanation }}</p>
     </div>
     {% endfor %}

@@ -1,6 +1,7 @@
 {# template/base.jinja #}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +10,14 @@
     {% include "javascript.jinja" %}
     <title>APOD Viewer</title>
 </head>
+
 <body>
     {% include "header.jinja" %}
     {% if images|length > 1 %}
-        {% include "grid.jinja" %}
+    {% include "grid.jinja" %}
     {% else %}
-        {% include "single.jinja" %}
+    {% include "single.jinja" %}
     {% endif %}
 </body>
+
 </html>

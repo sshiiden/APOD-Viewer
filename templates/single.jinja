@@ -3,9 +3,11 @@
     <h3>{{ images[0].date }}</h3>
     <h2>{{ images[0].title }}</h2>
     {% if images[0].media_type == "video" %}
-    <iframe width="640" height="360" src="{{ images[0].url }}" allowfullscreen></iframe>
+    <iframe width="1280" height="720" src="{{ images[0].url }}" allowfullscreen></iframe>
     {% else %}
-    <img src="{{ images[0].url }}" alt="images of the day">
+    <a href="{{ images[0].hdurl}}">
+        <img id="img-grid" src="{{ images[0].url }}" alt="Image of the day">
+    </a>
     {% endif %}
     <p>{{ images[0].explanation }}</p>
 </div>
