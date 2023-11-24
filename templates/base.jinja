@@ -1,76 +1,16 @@
 {# template/base.jinja #}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        function changeFilter() {
-            switch ($("#filter_type").val()) {
-                case "single":
-                    $("#start_date").show();
-                    $("#end_date").hide();
-                    $("#n_images").hide();
-                    break;
-                case "range":
-                    $("#start_date").show();
-                    $("#end_date").show();
-                    $("#n_images").hide();
-                    break;
-                case "random":
-                    $("#start_date").hide();
-                    $("#end_date").hide();
-                    $("#n_images").show();
-                    break;
-            }
-        }
-        $(document).ready(function () {
-            changeFilter();
-            $("#start_date").on("input", function () {
-                $("#end_date").attr("min", $(this).val());
-                if ($("#end_date").val() < $("#start_date").val()) {
-                    $("#end_date").val($("#start_date").val());
-                }
-            });
-            $("#filter_type").on("input", function () {
-                changeFilter();
-            });
-        });
-    </script>
+    {% include "javascript.jinja" %}
     <title>APOD Viewer</title>
 </head>
-
+{% include "header.jinja" %}
 <body>
-    <h1>APOD Viewer</h1>
-    <form action="/" method="post">
-        <select name="filter_type" id="filter_type">
-            <option value="single" {% if data.filter_type=="single" %} selected {% endif %}>Date</option>
-            <option value="range" {% if data.filter_type=="range" %} selected {% endif %}>Date range</option>
-            <option value="random" {% if data.filter_type=="random" %} selected {% endif %}>Random images</option>
-        </select>
-        <input type="date" id="start_date" name="start_date" value="{{ data.start_date }}" min="1995-06-16" max="{{ data.today }}" />
-        <input type="date" id="end_date" name="end_date" value="{{ data.end_date }}" min="{{ data.start_date }}" max="{{ data.today }}" />
-        <input type="number" id="n_images" name="n_images" value="{{ data.n_images }}" min="1" max="100" />
-        <input type="submit" value="submit" />
-    </form>
-    <div class="grid-container">
-        {% for image in images %}
-        <div class="grid-item">
-            <h3>{{ image.date }}</h3>
-            <h2>{{ image.title }}</h2>
-            {% if image.media_type == "video" %}
-            <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
-            {% else %}
-            <img src="{{ image.url }}" alt="Image of the day">
-            {% endif %}
-            <p>{{ image.explanation }}</p>
-        </div>
-        {% endfor %}
-    </div>
+    {% include "grid.jinja" %}
 </body>
-
 </html>

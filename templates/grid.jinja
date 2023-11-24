@@ -1,1 +1,15 @@
 {# template/grid.jinja #}
+<div class="grid-container">
+    {% for image in images %}
+    <div class="grid-item">
+        <h3>{{ image.date }}</h3>
+        <h2>{{ image.title }}</h2>
+        {% if image.media_type == "video" %}
+        <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
+        {% else %}
+        <img src="{{ image.url }}" alt="Image of the day">
+        {% endif %}
+        <p>{{ image.explanation }}</p>
+    </div>
+    {% endfor %}
+</div>
