@@ -4,12 +4,16 @@ body {
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .grid-item {
-    padding: 1%;
+    padding: 8px;
+    flex: 1;
+    flex-basis: 12%;
+    min-width: 360px;
     border: 1px solid white;
 }
 

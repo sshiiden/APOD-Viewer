@@ -60,7 +60,8 @@
     <div class="grid-container">
         {% for image in images %}
         <div class="grid-item">
-            <h2>{{ image.title }} {{ image.date }}</h2>
+            <h3>{{ image.date }}</h3>
+            <h2>{{ image.title }}</h2>
             {% if image.media_type == "video" %}
             <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
             {% else %}
