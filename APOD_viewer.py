@@ -36,7 +36,11 @@ def index():
 
     #content = requests.get(url).content
     #images = json.loads(content)
-    images = json.loads(open("apod.json"))#per evitare richieste
+
+    #per evitare richieste
+    f = open("apod.json")
+    images = json.loads(f.read())
+    f.close()
 
     return render_template("base.jinja", images=images, data=data)
 
