@@ -3,10 +3,7 @@ import requests
 import json
 import datetime
 
-app = Flask(__name__)
-
-@app.route("/", methods = ["POST", "GET"])
-def index():
+def info():
     API_KEY = "CtpP4rkxqLb297YpfL9T9m1X6UPNgqzpA6BiaW2y"
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
 
@@ -42,6 +39,12 @@ def index():
     #images = json.loads(f.read())
     #f.close()
 
+    return (images, data)
+
+app = Flask(__name__)
+@app.route("/", methods = ["POST", "GET"])
+def index():
+    images, data = info()
     return render_template("base.jinja", images=images, data=data)
 
 if __name__ == "__main__":

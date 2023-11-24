@@ -9,8 +9,12 @@
     {% include "javascript.jinja" %}
     <title>APOD Viewer</title>
 </head>
-{% include "header.jinja" %}
 <body>
-    {% include "grid.jinja" %}
+    {% include "header.jinja" %}
+    {% if images|length > 1 %}
+        {% include "grid.jinja" %}
+    {% else %}
+        {% include "single.jinja" %}
+    {% endif %}
 </body>
 </html>
