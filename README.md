@@ -1,2 +1,2 @@
-# [APOD](https://apod.nasa.gov/) Viewer
-visualizzatore della foto del giorno con filtri
+# APOD-Viewer
+uso delle API della NASA per visualizzare le immagini provenienti da https://apod.nasa.gov
