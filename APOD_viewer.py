@@ -34,7 +34,9 @@ def info():
     content = requests.get(url).content
     images = json.loads(content)
 
-    #per evitare richieste
+    # the nasa api may limit requests
+    # if needed uncomment the following lines
+    # to read from a file
     #f = open("apod.json")
     #images = json.loads(f.read())
     #f.close()
