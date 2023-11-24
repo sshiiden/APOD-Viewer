@@ -58,15 +58,17 @@
         <input type="submit" value="submit" />
     </form>
     {% for image in images %}
-    <section>
-        <h2>{{ image.title }} {{ image.date }}</h2>
-        {% if image.media_type == "video" %}
-        <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
-        {% else %}
-        <img src="{{ image.url }}" alt="Image of the day">
-        {% endif %}
-        <p>{{ image.explanation }}</p>
-    </section>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>{{ image.title }} {{ image.date }}</h2>
+            {% if image.media_type == "video" %}
+            <iframe width="640" height="360" src="{{ image.url }}" allowfullscreen></iframe>
+            {% else %}
+            <img src="{{ image.url }}" alt="Image of the day">
+            {% endif %}
+            <p>{{ image.explanation }}</p>
+        </div>
+    </div>
     {% endfor %}
 </body>
 
