@@ -20,13 +20,13 @@ def index():
     if request.method == "POST":
         match request.form["filter_type"]:
             case "single":
-                url += f"&start_date={request.form["start_date"]}"
-                url += f"&end_date={request.form["start_date"]}"
+                url += f"&start_date={request.form['start_date']}"
+                url += f"&end_date={request.form['start_date']}"
             case "range":
-                url += f"&start_date={request.form["start_date"]}"
-                url += f"&end_date={request.form["end_date"]}"
+                url += f"&start_date={request.form['start_date']}"
+                url += f"&end_date={request.form['end_date']}"
             case "random":
-                url += f"&count={request.form["n_images"]}"
+                url += f"&count={request.form['n_images']}"
         data["filter_type"] = request.form["filter_type"]
         data["start_date"] = request.form["start_date"]
         data["end_date"] = request.form["end_date"]
