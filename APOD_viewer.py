@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-import json
 import datetime
 
 def info():
@@ -31,12 +30,12 @@ def info():
     elif request.method == "GET":
         url += f"&start_date={today}"
 
-    content = requests.get(url).content
-    images = json.loads(content)
+    images = requests.get(url).json
 
     # the nasa api may limit requests
     # if needed uncomment the following lines
     # to read from a file
+    #import json
     #f = open("apod.json")
     #images = json.loads(f.read())
     #f.close()
