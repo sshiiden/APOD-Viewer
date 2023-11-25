@@ -30,7 +30,7 @@ def info():
     elif request.method == "GET":
         url += f"&start_date={today}"
 
-    images = requests.get(url).json
+    images = requests.get(url).json()
 
     # the nasa api may limit requests
     # if needed uncomment the following lines
