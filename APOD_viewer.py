@@ -32,14 +32,6 @@ def info():
 
     images = requests.get(url).json()
 
-    # the nasa api may limit requests
-    # if needed uncomment the following lines
-    # to read from a file
-    #import json
-    #f = open("apod.json")
-    #images = json.loads(f.read())
-    #f.close()
-
     return (images, data)
 
 app = Flask(__name__)
