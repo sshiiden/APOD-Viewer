@@ -4,10 +4,12 @@
 <hr>
 {% if image.media_type == "video" %}
 <iframe width="{{ width }}" height="{{ height }}" src="{{ image.url }}" allowfullscreen></iframe>
-{% else %}
+{% elif image.media_type == "image" %}
 <a href="{{ image.hdurl}}">
     <img src="{{ image.url }}" alt="Image of the day">
 </a>
+{% else %}
+    <img src="{{ url_for('static', filename='default.png') }}" alt="Missing image">
 {% endif %}
 {% if image.copyright %}
 <p>Image Credit & Copyright: {{ image.copyright }}</p>
