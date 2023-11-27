@@ -1,0 +1,10 @@
+{# template/grid.jinja #}
+<div class="grid-container">
+    {% for image in images %}
+    <div class="grid-item">
+        {% set width = 640 %}
+        {% set height = 360 %}
+        {% include "image.jinja" %}
+    </div>
+    {% endfor %}
+</div>

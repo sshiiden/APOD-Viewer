@@ -1,0 +1,15 @@
+{# template/image.jinja #}
+<h3>{{ image.date }}</h3>
+<h2>{{ image.title }}</h2>
+<hr>
+{% if image.media_type == "video" %}
+<iframe width="{{ width }}" height="{{ height }}" src="{{ image.url }}" allowfullscreen></iframe>
+{% else %}
+<a href="{{ image.hdurl}}">
+    <img src="{{ image.url }}" alt="Image of the day">
+</a>
+{% endif %}
+{% if image.copyright %}
+<p>Image Credit & Copyright: {{ image.copyright }}</p>
+{% endif %}
+<p>{{ image.explanation }}</p>
