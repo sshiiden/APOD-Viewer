@@ -1,4 +1,4 @@
-# Documentation
+# User Documentation
 
 The code is written in Python and works with the usage
 Flask and request modules.
