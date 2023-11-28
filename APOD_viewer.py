@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import requests
 import datetime
 
-def info():
+def getData():
     API_KEY = "CtpP4rkxqLb297YpfL9T9m1X6UPNgqzpA6BiaW2y"
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
 
@@ -37,7 +37,7 @@ def info():
 app = Flask(__name__)
 @app.route("/", methods = ["POST", "GET"])
 def index():
-    images, data = info()
+    images, data = getData()
     return render_template("base.jinja", images=images, data=data)
 
 if __name__ == "__main__":
