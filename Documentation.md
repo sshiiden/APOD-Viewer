@@ -52,8 +52,40 @@ In the absence of a video or a picture a default image is used:
 <img src="static/default.png" alt="default.png" width="256">
 
 ## Code
-The code is written in Python and works with the usage
-Flask and request modules.<br>
+The code is written in python and works with the usage of the flask and
+the request modules.<br>
 The request module is used to handle requests coming from the client
-while Flask is used to generate a response from the data received
-with the help of Jinja templates. 
+while flask is used to generate a html from the data received with the
+help of Jinja templates.
+
+The python code is found in `APOD_viewer.py`, while all the jinja
+templates are found in the `templates` directory.<br>
+In the `static` directory can be found:
+- an image, named `default.png`, used when a picture is missing
+- a javascript file, named `script.js`, to allow to change the
+query type
+- a css file, named `styles.css`, to make everything viewable
+
+### Python
+#### getData()
+Takes care of getting data from the form and getting the pictures to
+be displayed.
+
+Returns a tuple , `(images: List[Dict], data: Dict)`
+
+`images` is a list of dictionaries, returned by the query, rappresenting 
+the pictures to be displayed with their data.
+```python
+images = requests.get(url).json()
+```
+`data` is a dictionary containing data useful to the page
+```python
+data = {"filter_type": "single",
+        "start_date": today,
+        "end_date": today,
+        "n_images": 1,
+        "today": today}
+```
+#### index()
+Calls `getData` to get the data needed by the `base.jinja` template
+and returns the html page.
