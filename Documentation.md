@@ -1,19 +1,13 @@
-# User Documentation
-
-The code is written in Python and works with the usage
-Flask and request modules.
-
-The request module is used to handle requests coming from the client
-while Flask is used to generate a response from the data received
-with the help of Jinja templates. 
-
+# Documentation
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Code](#code)
 ## Requirements
 All the required module are listed in the file `requirements.txt`
 and can be installed thought pip with the following command:
 ``` shell
 pip install -r requirements.txt
 ```
-
 ## Usage
 Start the program with `python.exe APOD_viewer.py` in the terminal,
 it will start a development server at http://127.0.0.1:5000.
@@ -56,3 +50,10 @@ found in queries which are correctly rendered in the page.
 In the absence of a video or a picture a default image is used:
 
 <img src="static/default.png" alt="default.png" width="256">
+
+## Code
+The code is written in Python and works with the usage
+Flask and request modules.<br>
+The request module is used to handle requests coming from the client
+while Flask is used to generate a response from the data received
+with the help of Jinja templates. 
