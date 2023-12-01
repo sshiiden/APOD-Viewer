@@ -2,13 +2,17 @@
 <images>
     {% for image in images %}
     <item>
-        <media_type>{{ image.media_type }}</media_type>
-        <title>{{ image.title }}</title>
+        {% if image.copyright %}
         <copyright>{{ image.copyright }}</copyright>
+        {% endif %}
+        <title>{{ image.title }}</title>
         <date>{{ image.date }}</date>
-        <url>{{ image.url }}</url>
-        <hdurl>{{ image.hdurl }}</hdurl>
         <explanation>{{ image.explanation }}</explanation>
+        <url>{{ image.url }}</url>
+        {% if image.media_type == "image" %}
+            <hdurl>{{ image.hdurl }}</hdurl>
+        {% endif %}
+        <media_type>{{ image.media_type }}</media_type>
     </item>
     {% endfor %}
 </images>
