@@ -1,0 +1,14 @@
+{# template/xml.jinja #}
+<?xml version="1.0" encoding="UTF-8"?>
+<images>
+    {% for image in images %}
+    <{{ image.media_type }}>
+        <title lang="en">{{ image.title }}</title>
+        <copyright>{{ image.copyright }}</copyright>
+        <date>{{ image.date }}</date>
+        <url>{{ image.url }}</url>
+        <hdurl>{{ image.hdurl }}</hdurl>
+        <explanation>{{ image.explanation }}</explanation>
+    </{{ image.media_type }}>
+    {% endfor %}
+</images>
