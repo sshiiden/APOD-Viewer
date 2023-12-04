@@ -1,4 +1,4 @@
-{# template/base.jinja #}
+{# template/viewer/base.jinja #}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +13,11 @@
 </head>
 
 <body>
-    {% include "header.jinja" %}
+    {% include "viewer/header.jinja" %}
     {% if images|length > 1 %}
-    {% include "grid_view.jinja" %}
+    {% include "viewer/grid_view.jinja" %}
     {% else %}
-    {% include "single_view.jinja" %}
+    {% include "viewer/single_view.jinja" %}
     {% endif %}
 </body>
 

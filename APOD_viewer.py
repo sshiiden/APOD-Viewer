@@ -38,7 +38,7 @@ app = Flask(__name__)
 @app.route("/", methods = ["POST", "GET"])
 def index():
     images, data = getData()
-    return render_template("base.jinja", images=images, data=data)
+    return render_template("viewer/base.jinja", images=images, data=data)
 
 if __name__ == "__main__":
     app.run(debug=True)

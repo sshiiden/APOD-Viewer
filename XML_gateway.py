@@ -23,7 +23,7 @@ app = Flask(__name__)
 @app.route("/", methods = ["GET"])
 def index():
     images = getData(request.args)
-    return render_template("xml.jinja", images=images)
+    return render_template("xml/xml.jinja", images=images)
 
 if __name__ == "__main__":
     app.run(port="5001", debug=True)
