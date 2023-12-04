@@ -7,8 +7,8 @@ def getData(args):
 
     if args:
         if args.get("date"):
-            url += f"&start_date={args.get('start_date')}"
-            url += f"&end_date={args.get('end_date')}"
+            url += f"&start_date={args.get('date')}"
+            url += f"&end_date={args.get('date')}"
         if args.get("start_date"):
             url += f"&start_date={args.get('start_date')}"
         if args.get("end_date"):
