@@ -32,7 +32,7 @@ def getData():
 
     images_xml = ET.fromstring(requests.get(url).content)
     images = []
-    for item in images_xml.iter("item"):
+    for item in images_xml.iter("image"):
         image = {child.tag: child.text for child in item}
         images.append(image)
 
