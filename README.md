@@ -5,32 +5,32 @@ query data from the [apod](https://apod.nasa.gov) API and visualizes it.
 - [Usage](#usage)
 - [Code](#code)
 ## Requirements
-All the required module are listed in the file `requirements.txt`
+All the required modules are listed in the `requirements.txt` file
 and can be installed thought pip with the following command:
 ``` shell
 pip install -r requirements.txt
 ```
 ## Usage
-Start the program with `python.exe APOD_viewer.py` in the terminal,
+Start the program with `python APOD_viewer.py` in the terminal,
 it will start a development server at http://127.0.0.1:5000.
 
-By default it shows today's picture with it's date and title at the top
-and the copyright, if present, with it explanation at the bottom.
+By default it will show today's picture with it's date and title at the top
+and the copyright, if present, with an explanation at the bottom.
 
-the image can be clicked to access an high quality version, if present,
-allowing zoom in and see details thanks to the browser in-built
+the image can be clicked to see an high quality version, if present,
+allowing zoom in and see details thought the browser in-built
 image viewer.
 
-At the top of the page fields are present to make a custom query,<br>
+At the top of the page a form is present to make a custom query,<br>
 the first is a list of query types:
 - **Date**, the default, allows to select a date and query for that
-date picture.
+date's picture.
 - **Date range**, allows to select a start and an end date to query for
-pictures in a date range.
-- **Random images**, allows to choose a number, the amount if pictures
-and query for a list of random pictures.
+pictures in a range.
+- **Random images**, allows to choose the amount of pictures and query
+for a list of random pictures.
 
-Each query type will change the rendered fields to fit it needs.
+Each query type will change the rendered fields as needed.
 
 Both the **Date** date filed and the **Date range** start date field
 are limited to start from 16 June 1995 and end with today's date, as
@@ -40,7 +40,7 @@ value and end with today's date and will change to the start date value,
 if it's previous to the start date, this is done to avoid invalid
 queries.<br>
 The **Random images** number field is limited to start from 1 and end
-at 100, as it is the APOD API allowed range. 
+at 100, as it is the APOD API allowed range.
 
 If the query contains more than one picture, a grid view will be used,
 this can happen only if using the **Date range** and the
@@ -75,7 +75,7 @@ be displayed.
 
 Returns a tuple , `(images: List[Dict], data: Dict)`
 
-`images` is a list of dictionaries, returned by the query, rappresenting 
+`images` is a list of dictionaries, returned by the query, rappresenting
 the pictures to be displayed with their data.
 ```python
 images = requests.get(url).json()
