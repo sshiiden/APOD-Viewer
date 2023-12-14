@@ -73,4 +73,4 @@ default to today's date.
 - **count**: an integer from 1 to 100, returns `count` random
 images, cannot be used with any of the above. 
 
-Example query: `http://127.0.0.1:5001?count=3`
+Example query: http://127.0.0.1:5001?count=3
