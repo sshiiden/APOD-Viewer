@@ -3,6 +3,8 @@ query data from the [apod](https://apod.nasa.gov) API and visualizes it.
 
 - [Requirements](#requirements)
 - [Usage](#usage)
+  - [Viewer](#viewer)
+  - [XML Gateway](#xml-gateway)
 - [Code](#code)
 ## Requirements
 All the required modules are listed in the `requirements.txt` file
@@ -11,8 +13,13 @@ and can be installed thought pip with the following command:
 pip install -r requirements.txt
 ```
 ## Usage
+### Viewer
 Start the program with `python APOD_viewer.py` in the terminal,
 it will start a development server at http://127.0.0.1:5000.
+
+For the XML version use `python APOD_viewer_XML.py`,
+the default server address is http://127.0.0.1:5002, it requires
+the [XML Gateway](#xml-gateway) to be running.
 
 By default it will show today's picture with it's date and title at the top
 and the copyright, if present, with an explanation at the bottom.
@@ -53,41 +60,17 @@ In the absence of a video or a picture a default image is used:
 
 <img src="static/default.png" alt="default.png" width="256">
 
-## Code
-The code is written in python and works with the usage of the flask and
-the request modules.<br>
-The request module is used to handle requests coming from the client
-while flask is used to generate a html from the data received with the
-help of Jinja templates.
+### XML Gateway
+Start the program with `python XML_gateway.py` in the terminal,
+the default server addres is http://127.0.0.1:5001.
 
-The python code is found in `APOD_viewer.py`, while all the jinja
-templates are found in the `templates` directory.<br>
-In the `static` directory can be found:
-- an image, named `default.png`, used when a picture is missing
-- a javascript file, named `script.js`, to allow to change the
-query type
-- a css file, named `styles.css`, to make everything viewable
+The allowed arguments are:
+- **date**: a date to query for.
+- **start_date**: the start of a date range, cannot be used
+with `date`.
+- **end_date**: end of a date range when used with `start_date`
+default to today's date.
+- **count**: an integer from 1 to 100, returns `count` random
+images, cannot be used with any of the above. 
 
-### Python
-#### getData()
-Takes care of getting data from the form and getting the pictures to
-be displayed.
-
-Returns a tuple , `(images: List[Dict], data: Dict)`
-
-`images` is a list of dictionaries, returned by the query, rappresenting
-the pictures to be displayed with their data.
-```python
-images = requests.get(url).json()
-```
-`data` is a dictionary containing data useful to the page
-```python
-data = {"filter_type": "single",
-        "start_date": today,
-        "end_date": today,
-        "n_images": 1,
-        "today": today}
-```
-#### index()
-Calls `getData` to get the data needed by the `base.jinja` template
-and returns the html page.
+Example query: `http://127.0.0.1:5001?count=3`
