@@ -1,12 +1,18 @@
 from flask import Flask, render_template, request
 import requests
 
+def checkArgs(args, allowed):
+    for key in args:
+        if key not in allowed:
+            return False
+    return True
+
 def getData(args):
     API_KEY = "CtpP4rkxqLb297YpfL9T9m1X6UPNgqzpA6BiaW2y"
     url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
 
     if args:
-        if all(key in args for key in ("date", "start_date", "end_date", "count")):
+        if checkArgs(args, ("date", "start_date", "end_date", "count")):
             if "date" in args:
                 url += f"&start_date={args.get('date')}"
                 url += f"&end_date={args.get('date')}"
