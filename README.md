@@ -5,7 +5,6 @@ query data from the [apod](https://apod.nasa.gov) API and visualizes it.
 - [Usage](#usage)
   - [Viewer](#viewer)
   - [XML Gateway](#xml-gateway)
-- [Code](#code)
 ## Requirements
 All the required modules are listed in the `requirements.txt` file
 and can be installed thought pip with the following command:
